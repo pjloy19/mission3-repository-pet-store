@@ -25,7 +25,7 @@ public class PetStoreRepository {
             PetStoreModel petStoreModel = new PetStoreModel();
             petStoreModel.setId(resultSet.getString("id"));
             petStoreModel.setPetName(resultSet.getString("pet_name"));
-            petStoreModel.setAge(resultSet.getInt(3));
+            petStoreModel.setPetAge(resultSet.getInt(3));
             petStoreModel.setPetGender(resultSet.getString("pet_gender"));
             petStoreModel.setPetSpecies(resultSet.getString("pet_species"));
             return petStoreModel;
@@ -62,7 +62,7 @@ public class PetStoreRepository {
         //Create new data in table with values
         jdbcTemplate.update("insert into tbl_pet_profile (id,pet_name,pet_age,pet_gender,pet_species) values (?,?,?,?,?)",
                 new Object[]{ //get value from
-                        pet.getPetName(), pet.getAge(), pet.getPetGender(),
+                        pet.getPetName(), pet.getPetAge(), pet.getPetGender(),
                         pet.getPetSpecies()
                 });
     }
@@ -70,9 +70,9 @@ public class PetStoreRepository {
     //PUT -> it's update all records
     public void update (PetStoreModel pet){
         //Update to tbl_pet_profile according to column name.
-        jdbcTemplate.update("update tbl_pet_profile set pet_name = ?, pet_age = ?, pet_gender = ?, pet_species = ? where id = ?",
+        jdbcTemplate.update("update tbl_pet_profile set pet_name = ?, pet_age = ?, pet_gender = ?, pet_species = ?",
                 new Object[]{ //get value from
-                        pet.getId(),pet.getPetName(), pet.getAge(), pet.getPetGender(),
+                        pet.getPetName(), pet.getPetAge(), pet.getPetGender(),
                         pet.getPetSpecies()
                 });
 
